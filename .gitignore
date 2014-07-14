@@ -1,0 +1,6 @@
+.idea
+*.iml
+target/
+movie-manager-frontend/build
+movie-manager-frontend/vendor
+movie-manager-frontend/node_modules
