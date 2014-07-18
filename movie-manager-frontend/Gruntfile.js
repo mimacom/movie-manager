@@ -79,11 +79,12 @@ module.exports = function (grunt) {
         },
         injector: {
             options: {
-                template: 'build/index.html'
+                template: 'build/index.html',
+                ignorePath: 'build'
             },
             build: {
                 files: {
-                    'build/index.html': vendorMinifiedJsFiles.concat(appJsFiles).concat(vendorMinifiedCssFiles).concat(['app/template-cache.js'])
+                    'build/index.html': vendorMinifiedJsFiles.concat(appJsFiles).concat(vendorMinifiedCssFiles).concat([angularTemplateCache])
                 }
             }
         },
