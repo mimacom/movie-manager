@@ -11,8 +11,19 @@
                 });
             }
 
+            function movieInfo(imdbid) {
+                return $http.get(OMDB_URL, {params: {i: imdbid}}).then(function (response) {
+                    if (response.data.Error) {
+                        return $q.reject({msg: response.data.Error});
+                    } else {
+                        return response.data.Search;
+                    }
+                });
+            }
+
             return {
-                search: search
+                search: search,
+                movieInfo: movieInfo
             };
         });
 })();

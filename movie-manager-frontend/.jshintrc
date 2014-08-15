@@ -35,7 +35,7 @@
     "nonew"        : true,      // prohibits the use of constructor functions for side-effects
     "undef"        : true,      // prohibits the use of explicitly undeclared variables
     "quotmark"     : "single",  // enforces the consistency of quotation marks used throughout your code
-    "unused"       : true,      // warns when you define and never use your variables
+    "unused"       : false,      // warns when you define and never use your variables
     "strict"       : false,      // requires all functions to run in EcmaScript 5's strict mode
 
     "es3"          : false,     // Internet Explorer 6/7/8/9
