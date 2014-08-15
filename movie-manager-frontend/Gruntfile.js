@@ -6,11 +6,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     var appJsFiles = [
         'app/**/*.module.js',
         'app/**/*.js',
         '!app/**/*.spec.js'
+    ];
+
+    var appCssFiles = [
+        'build/css/style.css'
     ];
 
     var ngTemplates = [
@@ -20,10 +25,6 @@ module.exports = function (grunt) {
     var vendorMinifiedJsFiles = [
         'vendor/angular/angular.min.js',
         'vendor/angular-route/angular-route.min.js'
-    ];
-
-    var vendorMinifiedCssFiles = [
-        'vendor/bootstrap/dist/css/bootstrap.min.css'
     ];
 
     var angularTemplateCache = 'build/app/template-cache.js';
@@ -72,9 +73,15 @@ module.exports = function (grunt) {
                 files: [
                     {expand: true, src: appJsFiles, dest: 'build'},
                     {expand: true, src: vendorMinifiedJsFiles, dest: 'build'},
-                    {expand: true, src: vendorMinifiedCssFiles, dest: 'build'},
                     {expand: true, flatten: true, src: 'app/index.html', dest: 'build'}
                 ]
+            }
+        },
+        less: {
+            build: {
+                files: {
+                    'build/css/style.css': 'app/css/main.less'
+                }
             }
         },
         injector: {
@@ -84,7 +91,7 @@ module.exports = function (grunt) {
             },
             build: {
                 files: {
-                    'build/index.html': vendorMinifiedJsFiles.concat(appJsFiles).concat(vendorMinifiedCssFiles).concat([angularTemplateCache])
+                    'build/index.html': vendorMinifiedJsFiles.concat(appJsFiles).concat(appCssFiles).concat([angularTemplateCache])
                 }
             }
         },
@@ -95,6 +102,8 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('dev', ['clean:build', 'copy:build', 'ngtemplates', 'injector:build', 'express:mock', 'watch']);
+
+    grunt.registerTask('build', ['clean:build', 'copy:build', 'ngtemplates', 'less:build', 'injector:build']);
+    grunt.registerTask('dev', ['build', 'express:mock', 'watch']);
     grunt.registerTask('proxy', ['express:proxy', 'watch']);
 };
