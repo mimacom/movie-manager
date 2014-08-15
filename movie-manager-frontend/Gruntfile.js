@@ -70,6 +70,10 @@ module.exports = function (grunt) {
             index: {
                 files: 'app/index.html',
                 tasks: ['copy:build', 'injector:build']
+            },
+            styles: {
+                files: 'app/css/**/*.less',
+                tasks: ['less:build', 'injector:build']
             }
         },
         copy: {

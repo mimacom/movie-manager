@@ -1,4 +1,41 @@
-<div class="jumbotron">
-    <h1>Salut Pedro</h1>
+<div>
+    <h1>{{greeting}}</h1>
 
+    <div class="row">
+        <div class="col-sm-12">
+            <form>
+                <div class="input-group">
+                    <input type="text" ng-model="query" placeholder="Movie..." class="form-control">
+                        <span class="input-group-btn" ng-click="search()">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2 col-md-offset-5" ng-if="loading">
+            <div class="loader">
+                <span class="throbber">Loading…</span>
+            </div>
+        </div>
+        <div class="col-sm-12" ng-if="movies">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Jahr</th>
+                    <th>Typ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="movie in movies">
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Title}}</a></td>
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Year}}</a></td>
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Type}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
