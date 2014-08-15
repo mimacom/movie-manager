@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "express": "4.6.1",
+    "grunt-contrib-jshint": "^0.10.0",
     "request": "2.37.0"
   },
   "devDependencies": {

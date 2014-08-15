@@ -4,7 +4,5 @@
             $routeProvider.otherwise({
                 redirectTo: '/search'
             });
-        }).run(function () {
-            console.log('salut');
         });
 }());

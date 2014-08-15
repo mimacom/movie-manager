@@ -3,7 +3,8 @@
         $routeProvider.when('/search', {
             templateUrl: 'app/search/search.tpl.html',
             controller: 'SearchController',
-            controllerAs: 'ctrl'
+            controllerAs: 'searchCtrl',
+            reloadOnSearch: false
         });
     });
 }());

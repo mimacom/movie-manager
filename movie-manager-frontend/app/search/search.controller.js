@@ -1,15 +1,30 @@
 (function () {
     angular.module('search')
-        .controller('SearchController', function ($scope, OmdbService) {
-            $scope.greeting = 'Hello Pedro';
-//            $scope.loading = true;
+        .controller('SearchController', function ($scope, OmdbService, $route, $location) {
+            var self = this;
+            self.greeting = 'Hello Pedro';
+            if ($location.search().q) {
+                self.query = $location.search().q;
+                searchMovie();
+            }
 
-            $scope.search = function () {
-                $scope.loading = true;
-                OmdbService.search($scope.query).then(function (movies) {
-                    $scope.movies = movies;
-                    $scope.loading = false;
-                });
+            self.search = function () {
+                delete self.error;
+                delete self.movies;
+                $location.search('q', self.query);
+                searchMovie();
             };
+
+            function searchMovie() {
+                self.loading = true;
+                OmdbService.search(self.query).then(function (movies) {
+                    self.movies = movies;
+                }, function (error) {
+                    self.error = error;
+                }).finally(function () {
+                    self.loading = false;
+                });
+            }
+
         });
 }());

@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     var appJsFiles = [
         'app/**/*.module.js',
@@ -108,11 +109,18 @@ module.exports = function (grunt) {
             build: {
                 src: ['build']
             }
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            files: appJsFiles
         }
     });
 
 
-    grunt.registerTask('build', ['clean:build', 'copy:build', 'ngtemplates', 'less:build', 'injector:build']);
+    grunt.registerTask('default', ['build']);
+    grunt.registerTask('build', ['jshint', 'clean:build', 'copy:build', 'ngtemplates', 'less:build', 'injector:build']);
     grunt.registerTask('dev', ['build', 'express:mock', 'watch']);
     grunt.registerTask('proxy', ['express:proxy', 'watch']);
 };
