@@ -27,6 +27,10 @@ module.exports = function (grunt) {
         'vendor/angular-route/angular-route.min.js'
     ];
 
+    var vendorFonts = [
+        'vendor/bootstrap/fonts/*'
+    ];
+
     var angularTemplateCache = 'build/app/template-cache.js';
 
     grunt.initConfig({
@@ -73,6 +77,7 @@ module.exports = function (grunt) {
                 files: [
                     {expand: true, src: appJsFiles, dest: 'build'},
                     {expand: true, src: vendorMinifiedJsFiles, dest: 'build'},
+                    {expand: true, flatten: true, src: vendorFonts, dest: 'build/fonts'},
                     {expand: true, flatten: true, src: 'app/index.html', dest: 'build'}
                 ]
             }
