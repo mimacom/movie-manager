@@ -2,7 +2,7 @@
     angular.module('omdb')
         .factory('OmdbService', function ($http, OMDB_URL, $q) {
             function search(query) {
-                return $http.get(OMDB_URL, {params: {s: query}}).then(function (response) {
+                return $http.get(OMDB_URL, {params: {s: query}, timeout: 10000}).then(function (response) {
                     if (response.data.Error) {
                         return $q.reject({text: response.data.Error});
                     } else {
@@ -12,7 +12,7 @@
             }
 
             function movieInfo(imdbid) {
-                return $http.get(OMDB_URL, {params: {i: imdbid}}).then(function (response) {
+                return $http.get(OMDB_URL, {params: {i: imdbid}, timeout: 10000}).then(function (response) {
                     if (response.data.Error) {
                         return $q.reject({text: response.data.Error});
                     } else {
