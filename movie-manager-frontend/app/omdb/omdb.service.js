@@ -8,7 +8,7 @@
                     } else {
                         return response.data.Search;
                     }
-                });
+                }, handleHttpError);
             }
 
             function movieInfo(imdbid) {
@@ -16,9 +16,19 @@
                     if (response.data.Error) {
                         return $q.reject({msg: response.data.Error});
                     } else {
-                        return response.data.Search;
+                        return response.data;
                     }
-                });
+                }, handleHttpError);
+            }
+
+            function handleHttpError(httpError) {
+                var error = {};
+                if (httpError.statusText) {
+                    error.msg = httpError.statusText;
+                } else {
+                    error.msg = 'Connection error';
+                }
+                return $q.reject(error);
             }
 
             return {
