@@ -3,7 +3,8 @@
         'ngRoute',
         'layout',
         'search',
-        'movie.card'
+        'movie.card',
+        'user'
     ])
         .config(function ($routeProvider) {
             $routeProvider.otherwise({
