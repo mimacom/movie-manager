@@ -3,6 +3,8 @@
         .controller('MovieCardController', function ($routeParams) {
             var self = this,
                 imdbId = $routeParams.imdbid;
+
           // TODO
+
         });
 })();
