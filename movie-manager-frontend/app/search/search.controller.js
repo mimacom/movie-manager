@@ -2,7 +2,15 @@
     angular.module('search')
         .controller('SearchController', function ($scope, OmdbService, $route, $location) {
             var self = this;
-            self.greeting = 'Hello Pedro';
+
+            // handle browser back
+            $scope.$on('$locationChangeSuccess', function (event, path) {
+                var query = $location.search().q;
+                if (query !== self.query) {
+                    $route.reload();
+                }
+            });
+
             if ($location.search().q) {
                 self.query = $location.search().q;
                 searchMovie();
@@ -14,6 +22,7 @@
                 $location.search('q', self.query);
                 searchMovie();
             };
+
 
             function searchMovie() {
                 self.loading = true;

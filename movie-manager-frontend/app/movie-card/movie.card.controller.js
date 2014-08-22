@@ -1,6 +1,6 @@
 (function () {
     angular.module('movie.card')
-        .controller('', function ($routeParams) {
+        .controller('MovieCardController', function ($routeParams) {
             var self = this,
                 imdbId = $routeParams.imdbid;
           // TODO
