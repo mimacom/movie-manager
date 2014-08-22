@@ -11,9 +11,9 @@
             function handleHttpError(httpError) {
                 var error = {};
                 if (httpError.statusText) {
-                    error.msg = httpError.statusText;
+                    error.text = httpError.statusText;
                 } else {
-                    error.msg = 'Connection error';
+                    error.text = 'Connection error';
                 }
                 return $q.reject(error);
             }
