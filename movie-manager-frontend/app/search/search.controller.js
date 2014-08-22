@@ -17,7 +17,7 @@
             }
 
             self.search = function () {
-                delete self.error;
+                delete self.errors;
                 delete self.movies;
                 $location.search('q', self.query);
                 searchMovie();
@@ -29,7 +29,7 @@
                 OmdbService.search(self.query).then(function (movies) {
                     self.movies = movies;
                 }, function (error) {
-                    self.error = error;
+                    self.errors = [error];
                 }).finally(function () {
                     self.loading = false;
                 });

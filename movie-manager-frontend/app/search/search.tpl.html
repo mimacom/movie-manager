@@ -16,8 +16,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-12" ng-if="searchCtrl.error">
-            <div class="alert alert-danger" role="alert">{{searchCtrl.error.msg}}</div>
+        <div class="col-md-12">
+            <alert messages="searchCtrl.errors"></alert>
         </div>
         <div class="col-md-2 col-md-offset-5" ng-if="searchCtrl.loading">
             <div class="loader">

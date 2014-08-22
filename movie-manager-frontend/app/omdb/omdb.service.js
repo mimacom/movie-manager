@@ -4,7 +4,7 @@
             function search(query) {
                 return $http.get(OMDB_URL, {params: {s: query}}).then(function (response) {
                     if (response.data.Error) {
-                        return $q.reject({msg: response.data.Error});
+                        return $q.reject({text: response.data.Error});
                     } else {
                         return response.data.Search;
                     }
@@ -14,7 +14,7 @@
             function movieInfo(imdbid) {
                 return $http.get(OMDB_URL, {params: {i: imdbid}}).then(function (response) {
                     if (response.data.Error) {
-                        return $q.reject({msg: response.data.Error});
+                        return $q.reject({text: response.data.Error});
                     } else {
                         return response.data;
                     }
@@ -24,9 +24,9 @@
             function handleHttpError(httpError) {
                 var error = {};
                 if (httpError.statusText) {
-                    error.msg = httpError.statusText;
+                    error.text = httpError.statusText;
                 } else {
-                    error.msg = 'Connection error';
+                    error.text = 'Connection error';
                 }
                 return $q.reject(error);
             }

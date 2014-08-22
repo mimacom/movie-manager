@@ -2,9 +2,7 @@
 
     <h1>{{movieCardCtrl.movie.Title}}</h1>
 
-    <div ng-if="movieCardCtrl.error">
-        <div class="alert alert-danger" role="alert">{{movieCardCtrl.error.msg}}</div>
-    </div>
+    <alert messages="movieCardCtrl.errors"></alert>
 
     <div class="panel panel-default" ng-if="movieCardCtrl.movie">
         <div class="panel-body">
@@ -52,7 +50,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6">
-                    <img src="{{movieCardCtrl.movie.Poster}}" alt="Film poster"/>
+                    <img ng-if="movieCardCtrl.movie.Poster != 'N/A'" src="{{movieCardCtrl.movie.Poster}}" alt="Film poster"/>
                 </div>
             </div>
         </div>

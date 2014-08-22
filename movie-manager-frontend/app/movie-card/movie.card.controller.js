@@ -7,7 +7,7 @@
             OmdbService.movieInfo(imdbId).then(function (movie) {
                 self.movie = movie;
             }, function(error){
-                self.error = error;
+                self.errors = [error];
             });
 
         });
