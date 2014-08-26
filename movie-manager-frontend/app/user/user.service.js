@@ -3,7 +3,7 @@
         .factory('UserService', function ($http, $q) {
 
             function createUser(user){
-                $http.post('/api/users/', user).then(function (response) {
+                return $http.post('/api/users/', user).then(function (response) {
                     return response.data;
                 }, handleHttpError);
             }

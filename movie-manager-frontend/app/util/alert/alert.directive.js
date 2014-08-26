@@ -7,5 +7,5 @@ angular.module('util.alert')
             scope: {
                 messages: '=messages'
             }
-        }
+        };
     });
