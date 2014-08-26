@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("com.mimacom.movie.manager")
-@EntityScan(basePackages = "com.mimacom.movie.manager.service.domain")
+@ComponentScan
+@EntityScan
 @EnableJpaRepositories
 @EnableTransactionManagement
 public class Application {
