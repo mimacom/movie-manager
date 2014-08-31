@@ -1,6 +1,6 @@
 package com.mimacom.movie.manager.service.internal;
 
-import com.mimacom.movie.manager.Application;
+import com.mimacom.movie.manager.AppConfiguration;
 import com.mimacom.movie.manager.service.UserService;
 import com.mimacom.movie.manager.service.domain.Movie;
 import com.mimacom.movie.manager.service.domain.User;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class)
+@ContextConfiguration(classes = AppConfiguration.class)
 @Transactional
 public class DefaultUserServiceTest {
 
