@@ -14,10 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan
 @EnableJpaRepositories
 @EnableTransactionManagement
-public class Application {
-
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+public class AppConfiguration {
 
 }
