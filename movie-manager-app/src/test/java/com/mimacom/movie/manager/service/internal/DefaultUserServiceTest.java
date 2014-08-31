@@ -18,6 +18,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -83,7 +84,29 @@ public class DefaultUserServiceTest {
 		assertTrue(userWithMovies.getMovies().contains(movie));
 	}
 
-	private void flushAndClear() {
+    @Test
+    public void exists_withAnExistingUser_shouldReturnTrue() throws Exception {
+        // Arrange
+        User user = new User("Homer", "Simpson", "homer.simpson@mimacom.com");
+        this.userService.create(user);
+
+        // Act
+        boolean exists = this.userService.exists("homer.simpson@mimacom.com");
+
+        // Assert
+        assertTrue(exists);
+    }
+
+    @Test
+    public void exists_withNonExistingUser_shouldReturnFalse() throws Exception {
+        // Act
+        boolean exists = this.userService.exists("marge.simpson@mimacom.com");
+
+        // Assert
+        assertFalse(exists);
+    }
+
+    private void flushAndClear() {
 		this.entityManager.flush();
 		this.entityManager.clear();
 	}
