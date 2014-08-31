@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Id;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
@@ -26,7 +25,6 @@ public class CreateUserRequestData {
     @Email
     private String email;
 
-    @Past
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthDate;
 

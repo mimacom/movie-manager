@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/user")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(CreateUserRequestData createUserRequestData) throws UserExistsException {
+    public void create(@Valid @RequestBody CreateUserRequestData createUserRequestData) throws UserExistsException {
         User user = mapRequestUserToDomainUser(createUserRequestData);
         this.userService.create(user);
     }
