@@ -8,38 +8,90 @@
             <div class="col-sm-12">
                 <alert messages="userRegistrationCtrl.errors"></alert>
             </div>
-            <div class="col-sm-4">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="firstName">First name</label>
-                        <input type="text" required ng-model="user.firstName" class="form-control" id="firstName"
-                               placeholder="First name">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="birthDate">Birth date</label>
-                        <input type="text" class="form-control" id="birthDate" placeholder="Birth date">
-                    </div>
-                    <div class="form-group">
-                        <label>Gender</label>
 
-                        <div>
-                            <label class="checkbox-inline">
-                                <input type="radio" name="gender" id="genderM" value="option1"> M
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="radio" name="gender" id="genderF" value="option2"> F
-                            </label>
+            <div class="col-sm-12">
+                <form name="registrationForm" role="form">
+                    <!--firstName-->
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="firstName">First name</label>
+                            <input type="text" required ng-minlength="2" ng-model="user.firstName" name="firstName"
+                                   class="form-control" id="firstName" placeholder="First name">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registrationForm.firstName.$dirty && !registrationForm.firstName.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">First name must have at least 2 characters.</p>
+
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!--lastName-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="lastName">Last name</label>
+                            <input type="text" required ng-minlength="2" class="form-control" ng-model="user.lastName"
+                                   name="lastName" id="lastName" placeholder="Last name">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registrationForm.lastName.$dirty && !registrationForm.lastName.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Last name must have at least 2 characters.</p>
+
+                        </div>
+                    </div>
+                    <!--email-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="email">Email</label>
+                            <input type="email" required ng-model="user.email" name="email"
+                                   class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registrationForm.email.$dirty && !registrationForm.email.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Invalid email</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="birthDate">Birth date</label>
+                            <input type="text" class="form-control" required ng-model="user.birthDate" id="birthDate"
+                                   placeholder="Birth date" name="birthDate">
+                        </div>
+
+                        <div class="col-sm-4"
+                             ng-show="registrationForm.birthDate.$dirty && !registrationForm.birthDate.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Invalid date</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label>Gender</label>
+
+                            <div>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="user.gender" required name="gender" id="genderM"
+                                           value="option1"> M
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="user.gender" required name="gender" id="genderF"
+                                           value="option2"> F
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registrationForm.birthDate.$dirty && !registrationForm.gender.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Please chosse gender</p>
+                        </div>
+                    </div>
+                    <button type="submit" ng-disabled="!registrationForm.$valid" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
