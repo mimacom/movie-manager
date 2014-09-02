@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <button type="submit" ng-disabled="!registerUserCtrl.registrationForm.$valid"
-                            class="btn btn-primary">Submit
+                            ng-click="registerUserCtrl.registerUser()" class="btn btn-primary">Submit
                     </button>
                 </form>
             </div>

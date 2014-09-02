@@ -2,7 +2,7 @@
     angular.module('user')
         .factory('UserService', function ($http, $q) {
 
-            function createUser(user){
+            function createUser(user) {
                 return $http.post('/api/v1/users/', user).then(function (response) {
                     return response.data;
                 }, handleHttpError);
@@ -17,5 +17,9 @@
                 }
                 return $q.reject(error);
             }
+
+            return {
+                createUser: createUser
+            };
         });
 })();

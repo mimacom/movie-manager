@@ -1,6 +1,6 @@
 (function () {
     angular.module('user')
-        .controller('RegisterUserController', function () {
+        .controller('RegisterUserController', function (UserService) {
             var self = this;
 
             this.checkDate = function (strDate) {
@@ -17,6 +17,15 @@
                 } else {
                     self.registrationForm.birthDate.$setValidity('format', false);
                 }
+            };
+
+            this.registerUser = function () {
+                UserService.createUser(self.user).then(function(){
+                    self.msgs = [{severity: 'success', text: 'User created'}];
+//                    self.user = {};
+                }, function(error){
+                    self.errors = [error];
+                });
             };
         });
 })();
