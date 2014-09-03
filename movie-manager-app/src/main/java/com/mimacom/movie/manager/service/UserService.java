@@ -16,7 +16,7 @@ public interface UserService {
 	void create(User user) throws UserExistsException;
 
 	/**
-	 * @param email The email of the user to search for
+	 * @param email The email of the user to verify
 	 * @return {@code true} if the user exists otherwise {@code false}
 	 */
 	boolean exists(String email);
