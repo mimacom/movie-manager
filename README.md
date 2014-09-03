@@ -13,3 +13,7 @@ Request Mapping and JSON Marshaling / Unmarshaling Exercise
     - Response: Status code 201 if the user was successfully created otherwise a status code 500 with an error message.
 3. Add validation to the method created for the user creation at point 2. It should return status code 400 with the
    validation error message.
+
+Hints
+=============
+* Use `@JsonDeserialize(using = LocalDateDeserializer.class)` to tell Jackson how to deserialize a LocalDate (Java 8).
