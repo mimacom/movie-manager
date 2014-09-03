@@ -12,7 +12,7 @@ app.get('/api/v1/user/exists', function (req, res) {
     res.status(200).send((req.query.username === 'alain.sahli@mimacom.com' || req.query.username === 'robin.wyss@mimacom.com').toString());
 });
 
-app.post('/api/v1/users', function (req, res) {
+app.post('/api/v1/user', function (req, res) {
     if (!req.is('json')) {
         res.status(415).send('Payload must be JSON');
     }

@@ -1,3 +1,4 @@
+(function () {
 angular.module('util.alert')
     .directive('alert', function () {
         return {
@@ -9,3 +10,4 @@ angular.module('util.alert')
             }
         };
     });
+}());

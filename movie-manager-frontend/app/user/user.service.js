@@ -3,7 +3,13 @@
         .factory('UserService', function ($http, $q) {
 
             function createUser(user) {
-                return $http.post('/api/v1/users/', user).then(function (response) {
+                return $http.post('/api/v1/user/', user).then(function (response) {
+                    return response.data;
+                }, handleHttpError);
+            }
+
+            function getAllUsers() {
+                return $http.get('/api/v1/users/').then(function (response) {
                     return response.data;
                 }, handleHttpError);
             }
@@ -19,6 +25,7 @@
             }
 
             return {
+                getAllUsers: getAllUsers,
                 createUser: createUser
             };
         });

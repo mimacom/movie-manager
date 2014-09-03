@@ -1,1 +1,3 @@
-angular.module('util.alert', []);
+(function () {
+    angular.module('util.alert', []);
+}());

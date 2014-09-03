@@ -60,8 +60,7 @@
                     <div class="row">
                         <div class="form-group has-feedback col-sm-4">
                             <label for="birthDate">Birth date</label>
-                            <input type="text" class="form-control" required
-                                   ng-change="registerUserCtrl.checkDate(registerUserCtrl.user.birthDate)"
+                            <input type="text" class="form-control" required validate-date
                                    ng-model="registerUserCtrl.user.birthDate" id="birthDate"
                                    placeholder="dd.mm.yyyy" name="birthDate">
                         </div>
