@@ -48,13 +48,13 @@
                         <div class="form-group has-feedback col-sm-4">
                             <label for="email">Email</label>
                             <input type="email" required ng-model="registerUserCtrl.user.email" name="email"
-                                   class="form-control" id="email" placeholder="Email">
+                                   check-username class="form-control" id="email" placeholder="Email">
                         </div>
                         <div class="col-sm-4"
                              ng-show="registerUserCtrl.registrationForm.email.$dirty && !registerUserCtrl.registrationForm.email.$valid">
                             <label></label>
-
-                            <p class="form-control-static">Invalid email</p>
+                            <p ng-show="!registerUserCtrl.registrationForm.email.$error.username" class="form-control-static">Invalid email</p>
+                            <p ng-show="registerUserCtrl.registrationForm.email.$error.username" class="form-control-static">Username is already taken</p>
                         </div>
                     </div>
                     <div class="row">
@@ -71,6 +71,7 @@
 
                             <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.format"
                                class="form-control-static">Invalid date (expected format dd.mm.yyy)</p>
+
                             <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.range"
                                class="form-control-static">Birth date must be between now and 120 years ago</p>
                         </div>
