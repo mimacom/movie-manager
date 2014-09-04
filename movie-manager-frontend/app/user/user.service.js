@@ -2,12 +2,6 @@
     angular.module('user')
         .factory('UserService', function ($http, $q) {
 
-            function userExists(username) {
-                return $http.get('/api/v1/user/exists', {params: {username: username}}).then(function (response) {
-                    return response.data === 'true';
-                }, handleHttpError);
-            }
-
             function createUser(user){
                 return $http.post('/api/v1/users/', user).then(function (response) {
                     return response.data;
