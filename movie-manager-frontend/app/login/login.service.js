@@ -1,28 +1,33 @@
 (function () {
     angular.module('login')
-        .factory('LoginService', function ($http, $q) {
+        .factory('LoginService', function (UserService, $rootScope) {
+            var currentUser, users = {};
 
-            function login(username) {
-                return $q.when();
+            function login(user) {
+                currentUser = user;
+                $rootScope.$emit('userChanged');
             }
 
             function logout() {
-                return $q.when();
+                currentUser = undefined;
+                $rootScope.$emit('userChanged');
             }
 
-            function handleHttpError(httpError) {
-                var error = {};
-                if (httpError.statusText) {
-                    error.text = httpError.statusText;
-                } else {
-                    error.text = 'Connection error';
-                }
-                return $q.reject(error);
+            function getCurrentUser(){
+                return currentUser;
+            }
+
+            function reloadUsers() {
+                UserService.getAllUsers().then(function (users) {
+
+                });
             }
 
             return {
                 login: login,
-                logout: logout
+                logout: logout,
+                getCurrentUser: getCurrentUser,
+                reloadUsers: reloadUsers
             };
         });
 })();

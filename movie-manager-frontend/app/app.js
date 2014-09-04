@@ -4,7 +4,8 @@
         'layout',
         'search',
         'movie.card',
-        'user'
+        'user',
+        'login'
     ])
         .config(function ($routeProvider) {
             $routeProvider.otherwise({

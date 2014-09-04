@@ -15,7 +15,7 @@
             }
 
             function getAllUsers() {
-                return $http.get('/api/v1/users/').then(function (response) {
+                return $http.get('/api/v1/user/').then(function (response) {
                     return response.data;
                 }, handleHttpError);
             }

@@ -20,13 +20,37 @@ app.post('/api/v1/user', function (req, res) {
 });
 
 app.get('/api/v1/user', function (req, res) {
-    res.status(200).json({
-        firstName: 'Pedro',
-        lastName: 'Maximo',
-        email: 'pedro.maximo@pedro.com',
-        birthDate: '30.05.1979',
+    res.status(200).json([{
+        firstName: 'Homer',
+        lastName: 'Simpson',
+        email: 'homer.simpson@mimacom.com',
+        birthDate: '30.05.1963',
         gender: 'M'
-    });
+    },{
+        firstName: 'Marge',
+        lastName: 'Simpson',
+        email: 'marge.simpson@mimacom.com',
+        birthDate: '25.06.1965',
+        gender: 'F'
+    },{
+        firstName: 'Bart',
+        lastName: 'Simpson',
+        email: 'bart.simpson@mimacom.com',
+        birthDate: '11.02.1992',
+        gender: 'M'
+    },{
+        firstName: 'Lisa',
+        lastName: 'Simpson',
+        email: 'bart.simpson@mimacom.com',
+        birthDate: '09.01.1994',
+        gender: 'F'
+    },{
+        firstName: 'Maggie',
+        lastName: 'Simpson',
+        email: 'bart.simpson@mimacom.com',
+        birthDate: '31.08.1996',
+        gender: 'F'
+    }]);
 });
 
 

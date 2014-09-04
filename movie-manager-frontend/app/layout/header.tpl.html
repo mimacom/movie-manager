@@ -1,5 +1,5 @@
 <div class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="HeaderController as headerCtrl">
         <div class="navbar-header">
             <span class="navbar-brand" href="#">
                 <span class="glyphicon glyphicon-film"></span>
@@ -8,9 +8,14 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#/search">Search</a></li>
+                <li ng-if="headerCtrl.currentUser"><a>
+                    <span class="glyphicon glyphicon-user"> {{headerCtrl.currentUser.firstName}} {{headerCtrl.currentUser.lastName}}</span>
+                </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register">Register</a></li>
+                <li ng-if="!headerCtrl.currentUser"><a href="#/login">Login</a></li>
+                <li ng-if="!headerCtrl.currentUser"><a href="#/register">Register</a></li>
+                <li ng-if="headerCtrl.currentUser"><a ng-click="headerCtrl.logout()">Logout</a></li>
             </ul>
         </div>
     </div>

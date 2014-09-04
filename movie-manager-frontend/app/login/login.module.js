@@ -1,6 +1,10 @@
 (function () {
     angular.module('login', [])
         .config(function ($routeProvider) {
-           // todo
+            $routeProvider.when('/login', {
+                templateUrl: 'app/login/login.tpl.html',
+                controller: 'LoginController',
+                controllerAs: 'loginCtrl'
+            });
         });
 }());
