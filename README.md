@@ -20,7 +20,7 @@ self.errors = [{text: 'an error occurred'}]
 ```
  - Optionally you can add a severity: success, info, warning or danger (default is danger) 
 ```javascript
-self.errors = [{text: 'user was created', severity: 'success'}]
+self.errors = [{text: 'an error occurred', severity: 'warning'}]
 ```
 
 Optional: validate username
