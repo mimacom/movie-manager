@@ -19,8 +19,7 @@
             }
 
             return {
-                createUser: createUser,
-                userExists: userExists
+                createUser: createUser
             };
         });
 })();
