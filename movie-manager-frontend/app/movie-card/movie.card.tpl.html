@@ -49,8 +49,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <img ng-if="movieCardCtrl.movie.Poster != 'N/A'" src="{{movieCardCtrl.movie.Poster}}" alt="Film poster"/>
+                </div>
+                <div class="col-sm-2" ng-if="movieCardCtrl.currentUser">
+                    <h2><span class="glyphicon glyphicon-star-empty"></span></h2>
                 </div>
             </div>
         </div>
