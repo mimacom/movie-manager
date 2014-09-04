@@ -1,7 +1,7 @@
 Exercise 1 - First Steps
 =============
 In the first exercise we are going to create a view to display details about a movie. The routing, the structure of the controller and the beginning of
-view are already created. Your task will be to get the movie information from the OmdbService and display it. 
+the view are already created. Your task will be to get the movie information from the OmdbService and display it. 
 
 1. Complete the controller
     - Retrieve the movie information from the OmdbService service
