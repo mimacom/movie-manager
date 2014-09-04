@@ -5,12 +5,24 @@ In this exercise we are going to add validation to a form and send the input (on
 1. Add validation to the user.register.tpl.html
     - Bind the input fields to the the attributes of the user object (it is already done for the first input).
     - You can find the possible validation directives in the angular docs: https://docs.angularjs.org/api/ng/input/input%5Btext%5D
-    - Disable the submit button if the form is not valid. 
+    - Disable the submit button if the form is not valid
 3. Complete the controller to send the data to the backend (using the UserService)
     - Inject the UserService
     - Add a method which passes the data to the UserService.create method
-    - Display error messages (you can see in the search.controller.js how this is done)
-    
+    - Display error messages
+
+Hints
+======
+ - The search template has an example for how to disable the submit button for an invalid form
+ - To display error messages you can use the alert directive (it is already in the temple). You just have to add a array of error objects to the scope
+```javascript
+self.errors = [{text: 'an error occurred'}]
+```
+ - Optionally you can add a severity: success, info, warning or danger (default is danger) 
+```javascript
+self.errors = [{text: 'user was created', severity: 'success'}]
+```
+
 Optional: validate username
 ======
 Check if the username is not already used by someone.
