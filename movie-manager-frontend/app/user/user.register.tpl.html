@@ -1,7 +1,4 @@
 <div class="panel panel-default">
-
-    <!-- TODO add form validation-->
-
     <div class="panel-heading">Registration</div>
     <div class="panel-body">
         <div class="row">
@@ -53,8 +50,12 @@
                         <div class="col-sm-4"
                              ng-show="registerUserCtrl.registrationForm.email.$dirty && !registerUserCtrl.registrationForm.email.$valid">
                             <label></label>
-                            <p ng-show="!registerUserCtrl.registrationForm.email.$error.username" class="form-control-static">Invalid email</p>
-                            <p ng-show="registerUserCtrl.registrationForm.email.$error.username" class="form-control-static">Username is already taken</p>
+
+                            <p ng-show="!registerUserCtrl.registrationForm.email.$error.username"
+                               class="form-control-static">Invalid email</p>
+
+                            <p ng-show="registerUserCtrl.registrationForm.email.$error.username"
+                               class="form-control-static">Username is already taken</p>
                         </div>
                     </div>
                     <div class="row">

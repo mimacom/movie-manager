@@ -28,6 +28,7 @@
 
                         // if it's valid, return the value to the model,
                         // otherwise return undefined.
+                        // TODO yyyy-mm-dd
                         return formatValid && rangeValid ? value : undefined;
                     });
                 }
