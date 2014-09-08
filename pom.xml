@@ -11,7 +11,7 @@
 
     <modules>
         <module>movie-manager-web</module>
-        <module>movie-manager-service</module>
+        <module>movie-manager-app</module>
     </modules>
 
     <dependencyManagement>
