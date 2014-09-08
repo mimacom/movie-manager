@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/exists", method = RequestMethod.GET)
-    public boolean exists(@RequestParam("email") String email) {
+    public boolean exists(@RequestParam("username") String email) {
         return this.userService.exists(email);
     }
 
