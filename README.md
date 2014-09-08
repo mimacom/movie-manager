@@ -3,7 +3,7 @@ Request Mapping and JSON Marshaling / Unmarshaling Exercise
 1. Create a new method in the _UserController_ controller that verifies if a user
    already exists. Inject the _UserService_ bean in your controller to verify it.
    Here is the mapping specification:
-    - URL: /api/v1/user/exists?username=alain.sahli@mimacom.com
+    - URL: /api/v1/user/exists?username=homer.simpson@mimacom.com
     - Method: GET
     - Response: boolean
 2. Create a new method in the _UserController_ controller that creates a new user. The
