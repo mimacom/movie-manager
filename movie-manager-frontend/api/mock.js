@@ -1,13 +1,6 @@
 var express = require('express');
 var app = express();
 
-var nextView = false;
-
-var example = {salut: 'Pedro'};
-app.get('/api/v1/example', function (req, res) {
-    res.status(200).json(example);
-});
-
 app.get('/api/v1/user/exists', function (req, res) {
     res.status(200).send((req.query.username === 'alain.sahli@mimacom.com' || req.query.username === 'robin.wyss@mimacom.com').toString());
 });
