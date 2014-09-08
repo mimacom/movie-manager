@@ -28,9 +28,12 @@
 
                         // if it's valid, return the value to the model,
                         // otherwise return undefined.
-                        // TODO yyyy-mm-dd
-                        return formatValid && rangeValid ? value : undefined;
+                        return formatValid && rangeValid ? getIsoFormat(value) : undefined;
                     });
+
+                    function getIsoFormat(date) {
+                        return date.split('.').reverse().join('-');
+                    }
                 }
             };
         });
