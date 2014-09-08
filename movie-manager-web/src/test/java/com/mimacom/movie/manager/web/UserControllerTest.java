@@ -59,7 +59,7 @@ public class UserControllerTest {
         this.userService.create(new User("Homer", "Simpson", userEmail));
 
         // Act & Assert
-        this.mockMvc.perform(get("/v1/user/exists?email={email}", userEmail))
+        this.mockMvc.perform(get("/v1/user/exists?username={email}", userEmail))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
     }
@@ -67,7 +67,7 @@ public class UserControllerTest {
     @Test
     public void userExists_withNonExistingUser_shouldReturnFalse() throws Exception {
         // Act & Assert
-        this.mockMvc.perform(get("/v1/user/exists?email={email}", "homer.simpson@mimacom.com"))
+        this.mockMvc.perform(get("/v1/user/exists?username={email}", "homer.simpson@mimacom.com"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("false"));
     }
@@ -88,8 +88,6 @@ public class UserControllerTest {
     }
 
     // Tests for exercise 1 point 3
-
-
     @Test
     public void createUser_withInvalidUser_shouldThrowAnException() throws Exception {
         // Arrange
@@ -104,4 +102,22 @@ public class UserControllerTest {
 
         assertFalse(this.userService.exists("homer.simpson@mimacom.com"));
     }
+	
+	@Test
+	public void createUser_withExistingUser_shouldReturnAReason() throws Exception {
+		// Arrange
+		CreateUserRequestData createUserRequestData = new CreateUserRequestData();
+		createUserRequestData.setFirstName("Homer");
+		createUserRequestData.setLastName("Simpson");
+		createUserRequestData.setEmail("homer.simpson@mimacom.com");
+
+		// Act & Assert
+		this.mockMvc.perform(post("/v1/user").content(TestUtils.convertObjectToJsonString(createUserRequestData))
+				.contentType(APPLICATION_JSON_UTF8))
+				.andExpect(status().isCreated());
+		this.mockMvc.perform(post("/v1/user").content(TestUtils.convertObjectToJsonString(createUserRequestData))
+				.contentType(APPLICATION_JSON_UTF8))
+				.andExpect(status().isBadRequest())
+				.andExpect(content().string("User with email homer.simpson@mimacom.com already exists"));
+	}
 }

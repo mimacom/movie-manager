@@ -6,6 +6,7 @@ import com.mimacom.movie.manager.service.internal.UserExistsException;
 import com.mimacom.movie.manager.web.data.CreateUserRequestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -41,5 +42,10 @@ public class UserController {
 
         return newUser;
     }
+
+	@ExceptionHandler(UserExistsException.class)
+	private ResponseEntity handleUserExistsException(UserExistsException exception) {
+		return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+	}
 
 }
