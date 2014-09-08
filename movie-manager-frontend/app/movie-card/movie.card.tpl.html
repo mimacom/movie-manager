@@ -1,0 +1,61 @@
+<div>
+
+    <h1>{{movieCardCtrl.movie.Title}}</h1>
+
+    <alert messages="movieCardCtrl.errors"></alert>
+
+    <div class="panel panel-default" ng-if="movieCardCtrl.movie">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="row">
+                            <div class=" form-group">
+                                <label class="col-sm-4 control-label">Year</label>
+                                <span class="col-sm-8 form-control-static">{{movieCardCtrl.movie.Year}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Genre</label>
+                                <span class="col-sm-8 form-control-static">{{movieCardCtrl.movie.Genre}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Director</label>
+                                <span class="col-sm-8 form-control-static">{{movieCardCtrl.movie.Director}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Actors</label>
+                                <span class="col-sm-8 form-control-static">{{movieCardCtrl.movie.Actors}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Country</label>
+                                <span class="col-sm-8 form-control-static">{{movieCardCtrl.movie.Country}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Rating</label>
+
+                                <div class="col-sm-4 form-control-static">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: {{movieCardCtrl.movie.imdbRating * 10 }}%;">
+                                            {{movieCardCtrl.movie.imdbRating}} ({{movieCardCtrl.movie.imdbVotes}} votes)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Plot</label>
+                                <span class=" col-sm-8 form-control-static">{{movieCardCtrl.movie.Plot}}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                    <img ng-if="movieCardCtrl.movie.Poster != 'N/A'" src="{{movieCardCtrl.movie.Poster}}" alt="Film poster"/>
+                </div>
+                <div class="col-sm-2" ng-if="movieCardCtrl.currentUser">
+                    <h2><span class="glyphicon glyphicon-star-empty"></span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

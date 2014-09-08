@@ -1,10 +1,15 @@
 (function () {
-    angular.module('moviemanager', ['ngRoute', 'layout', 'search'])
+    angular.module('moviemanager', [
+        'ngRoute',
+        'layout',
+        'search',
+        'movie.card',
+        'user',
+        'login'
+    ])
         .config(function ($routeProvider) {
             $routeProvider.otherwise({
                 redirectTo: '/search'
             });
-        }).run(function () {
-            console.log('salut');
         });
 }());

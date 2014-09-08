@@ -1,5 +1,10 @@
 (function () {
-    angular.module('search', []).config(function ($routeProvider) {
-        $routeProvider.when('/search', { templateUrl: 'app/search/search.tpl.html', controller: 'SearchController', controllerAs: 'ctrl' });
+    angular.module('search', ['omdb', 'util.alert']).config(function ($routeProvider) {
+        $routeProvider.when('/search', {
+            templateUrl: 'app/search/search.tpl.html',
+            controller: 'SearchController',
+            controllerAs: 'searchCtrl',
+            reloadOnSearch: false
+        });
     });
 }());
