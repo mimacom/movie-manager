@@ -24,7 +24,7 @@ public interface UserService {
 	/**
 	 * @return a list of all users
 	 */
-	List<User> getAll();
+	List<com.mimacom.movie.manager.service.data.ShortUserDetails> getAll();
 
 	/**
 	 * Adds a movie to the movie list of the {@code user}

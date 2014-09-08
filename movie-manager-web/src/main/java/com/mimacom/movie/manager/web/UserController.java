@@ -1,6 +1,7 @@
 package com.mimacom.movie.manager.web;
 
 import com.mimacom.movie.manager.service.UserService;
+import com.mimacom.movie.manager.service.data.ShortUserDetails;
 import com.mimacom.movie.manager.service.domain.User;
 import com.mimacom.movie.manager.service.internal.UserExistsException;
 import com.mimacom.movie.manager.web.data.CreateUserRequestData;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/user")
@@ -42,6 +44,11 @@ public class UserController {
 
         return newUser;
     }
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public List<ShortUserDetails> getAllUsers() {
+		return this.userService.getAll();
+	}
 
 	@ExceptionHandler(UserExistsException.class)
 	private ResponseEntity handleUserExistsException(UserExistsException exception) {
