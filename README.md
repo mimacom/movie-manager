@@ -11,6 +11,7 @@ Request Mapping and JSON Marshaling / Unmarshaling Exercise
     - URL: /api/v1/user
     - Method: POST
     - Response: Status code 201 if the user was successfully created otherwise a status code 500 with an error message.
+    - A sample JSON payload can be found in the file _sample-create-user-json-payload.json_.
 3. Validate the user object received as parameter in the create user method of the _UserController_. If the user is not
    valid, a status code 400 should be returned. A user is only valid if it has a first name, last name and a valid email
    address.
