@@ -1,4 +1,46 @@
-<div class="jumbotron">
-    <h1>Salut Pedro</h1>
+<div>
+    <h1>Search</h1>
 
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="search-form" novalidate>
+                <div class="input-group input-group-lg">
+                    <input type="text" ng-model="searchCtrl.query" placeholder="Movie..." class="form-control"
+                           ng-minlength="2" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" ng-click="searchCtrl.search()" type="submit"
+                                    ng-disabled="!searchForm.$valid">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <alert messages="searchCtrl.errors"></alert>
+        </div>
+        <div class="col-md-2 col-md-offset-5" ng-if="searchCtrl.loading">
+            <div class="loader">
+                <span class="throbber">Loading…</span>
+            </div>
+        </div>
+        <div class="col-sm-12" ng-if="searchCtrl.movies">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Jahr</th>
+                    <th>Typ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="movie in searchCtrl.movies">
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Title}}</a></td>
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Year}}</a></td>
+                    <td><a ng-href="#/movies/{{movie.imdbID}}">{{movie.Type}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

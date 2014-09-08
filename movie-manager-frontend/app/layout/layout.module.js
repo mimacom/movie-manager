@@ -1,3 +1,3 @@
 (function () {
-    angular.module('layout', []);
+    angular.module('layout', ['login']);
 }());

@@ -1,0 +1,111 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Registration</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <alert messages="registerUserCtrl.errors"></alert>
+            </div>
+
+            <div class="col-sm-12">
+                <form name="registerUserCtrl.registrationForm" role="form">
+                    <!--firstName-->
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="firstName">First name</label>
+                            <input type="text" required ng-minlength="2" ng-model="registerUserCtrl.user.firstName"
+                                   name="firstName"
+                                   class="form-control" id="firstName" placeholder="First name">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registerUserCtrl.registrationForm.firstName.$dirty && !registerUserCtrl.registrationForm.firstName.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">First name must have at least 2 characters.</p>
+
+                        </div>
+                    </div>
+                    <!--lastName-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="lastName">Last name</label>
+                            <input type="text" required ng-minlength="2" class="form-control"
+                                   ng-model="registerUserCtrl.user.lastName"
+                                   name="lastName" id="lastName" placeholder="Last name">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registerUserCtrl.registrationForm.lastName.$dirty && !registerUserCtrl.registrationForm.lastName.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Last name must have at least 2 characters.</p>
+
+                        </div>
+                    </div>
+                    <!--email-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="email">Email</label>
+                            <input type="email" required ng-model="registerUserCtrl.user.email" name="email"
+                                   check-username class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registerUserCtrl.registrationForm.email.$dirty && !registerUserCtrl.registrationForm.email.$valid">
+                            <label></label>
+
+                            <p ng-show="!registerUserCtrl.registrationForm.email.$error.username"
+                               class="form-control-static">Invalid email</p>
+
+                            <p ng-show="registerUserCtrl.registrationForm.email.$error.username"
+                               class="form-control-static">Username is already taken</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="birthDate">Birth date</label>
+                            <input type="text" class="form-control" required validate-date
+                                   ng-model="registerUserCtrl.user.birthDate" id="birthDate"
+                                   placeholder="dd.mm.yyyy" name="birthDate">
+                        </div>
+
+                        <div class="col-sm-4"
+                             ng-show="registerUserCtrl.registrationForm.birthDate.$dirty && !registerUserCtrl.registrationForm.birthDate.$valid">
+                            <label></label>
+
+                            <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.format"
+                               class="form-control-static">Invalid date (expected format dd.mm.yyy)</p>
+
+                            <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.range"
+                               class="form-control-static">Birth date must be between now and 120 years ago</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label>Gender</label>
+
+                            <div>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="registerUserCtrl.user.gender" required name="gender"
+                                           id="genderM"
+                                           value="option1"> M
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="registerUserCtrl.user.gender" required name="gender"
+                                           id="genderF"
+                                           value="option2"> F
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4"
+                             ng-show="registerUserCtrl.registrationForm.gender.$dirty && !registerUserCtrl.registrationForm.gender.$valid">
+                            <label></label>
+
+                            <p class="form-control-static">Please chosse gender</p>
+                        </div>
+                    </div>
+                    <button type="submit" ng-disabled="!registerUserCtrl.registrationForm.$valid"
+                            ng-click="registerUserCtrl.registerUser()" class="btn btn-primary">Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
