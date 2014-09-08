@@ -18,4 +18,5 @@ Request Mapping and JSON Marshaling / Unmarshaling Exercise
    
 Hints
 =============
+* Create a DTO in the web module that fits the JSON payload for the user creation. 
 * Use `@JsonDeserialize(using = LocalDateDeserializer.class)` to tell Jackson how to deserialize a LocalDate (Java 8).
