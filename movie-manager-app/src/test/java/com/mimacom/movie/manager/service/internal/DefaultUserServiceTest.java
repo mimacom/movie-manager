@@ -2,6 +2,7 @@ package com.mimacom.movie.manager.service.internal;
 
 import com.mimacom.movie.manager.AppConfiguration;
 import com.mimacom.movie.manager.service.UserService;
+import com.mimacom.movie.manager.service.data.ShortUserDetails;
 import com.mimacom.movie.manager.service.domain.Movie;
 import com.mimacom.movie.manager.service.domain.User;
 import org.junit.Rule;
@@ -43,9 +44,9 @@ public class DefaultUserServiceTest {
 
         // Assert
         flushAndClear();
-        List<User> allUsers = this.userService.getAll();
+        List<ShortUserDetails> allUsers = this.userService.getAllShort();
         assertEquals(1, allUsers.size());
-        User user = allUsers.get(0);
+        ShortUserDetails user = allUsers.get(0);
         assertEquals("Homer", user.getFirstName());
         assertEquals("Simpson", user.getLastName());
         assertEquals("homer.simpson@mimacom.com", user.getEmail());
@@ -76,10 +77,11 @@ public class DefaultUserServiceTest {
 
         // Assert
         flushAndClear();
-        List<User> users = this.userService.getAll();
-        User userWithMovies = users.get(0);
-        assertEquals(1, userWithMovies.getMovies().size());
-        assertTrue(userWithMovies.getMovies().contains(movie));
+        List<ShortUserDetails> users = this.userService.getAllShort();
+        ShortUserDetails userWithMovies = users.get(0);
+		List<String> moviesIds = this.userService.getMoviesIds(userWithMovies.getEmail());
+		assertEquals(1, moviesIds.size());
+        assertTrue(moviesIds.contains(movie.getImdbId()));
     }
 
     @Test

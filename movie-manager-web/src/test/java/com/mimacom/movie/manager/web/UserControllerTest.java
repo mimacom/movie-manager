@@ -17,17 +17,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
-
 import java.nio.charset.Charset;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -120,4 +118,17 @@ public class UserControllerTest {
 				.andExpect(status().isBadRequest())
 				.andExpect(content().string("User with email homer.simpson@mimacom.com already exists"));
 	}
+
+	@Test
+	public void getAllUsers_shouldReturnAListOfAllUsers() throws Exception {
+		// Arrange
+		this.userService.create(new User("Homer", "Simpson", "homer.simpson@mimacom.com"));
+		this.userService.create(new User("Marge", "Simpson", "marge.simpson@mimacom.com"));
+		this.userService.create(new User("Bart", "Simpson", "bart.simpson@mimacom.com"));
+		
+		// Act & Assert
+		this.mockMvc.perform(get("/v1/user")).andExpect(jsonPath("$", hasSize(3)))
+				.andExpect(jsonPath("$[*].firstName", containsInAnyOrder("Homer", "Marge", "Bart")));
+	}
 }
+

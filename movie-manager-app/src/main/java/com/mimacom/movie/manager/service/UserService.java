@@ -1,5 +1,6 @@
 package com.mimacom.movie.manager.service;
 
+import com.mimacom.movie.manager.service.data.ShortUserDetails;
 import com.mimacom.movie.manager.service.domain.Movie;
 import com.mimacom.movie.manager.service.domain.User;
 import com.mimacom.movie.manager.service.internal.UserExistsException;
@@ -22,9 +23,15 @@ public interface UserService {
 	boolean exists(String email);
 
 	/**
-	 * @return a list of all users
+	 * @return a list of all users.
 	 */
-	List<com.mimacom.movie.manager.service.data.ShortUserDetails> getAll();
+	List<ShortUserDetails> getAllShort();
+
+	/**
+	 * @return a list of IMDB movie ids.
+	 * @param email The email of the user for which the movie list must be returned.
+	 */
+	List<String> getMoviesIds(String email);
 
 	/**
 	 * Adds a movie to the movie list of the {@code user}

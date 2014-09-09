@@ -42,11 +42,17 @@ public class DefaultUserService implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<ShortUserDetails> getAll() {
+	public List<ShortUserDetails> getAllShort() {
 		List<User> allUsers = this.userRepository.findAll();
 		return allUsers.stream().map(user -> 
 				new ShortUserDetails(user.getFirstName(), user.getLastName(), user.getEmail()))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getMoviesIds(String email) {
+		User user = this.userRepository.getOne(email);
+		return user.getMovies().stream().map(Movie::getImdbId).collect(Collectors.toList());
 	}
 
 	@Override

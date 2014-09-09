@@ -47,7 +47,7 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<ShortUserDetails> getAllUsers() {
-		return this.userService.getAll();
+		return this.userService.getAllShort();
 	}
 
 	@ExceptionHandler(UserExistsException.class)
