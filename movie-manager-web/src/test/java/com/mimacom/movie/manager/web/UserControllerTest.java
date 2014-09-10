@@ -17,16 +17,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
-
 import java.nio.charset.Charset;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,7 +56,7 @@ public class UserControllerTest {
         this.userService.create(new User("Homer", "Simpson", userEmail));
 
         // Act & Assert
-        this.mockMvc.perform(get("/v1/user/exists?email={email}", userEmail))
+        this.mockMvc.perform(get("/v1/user/exists?username={email}", userEmail))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
     }
@@ -67,7 +64,7 @@ public class UserControllerTest {
     @Test
     public void userExists_withNonExistingUser_shouldReturnFalse() throws Exception {
         // Act & Assert
-        this.mockMvc.perform(get("/v1/user/exists?email={email}", "homer.simpson@mimacom.com"))
+        this.mockMvc.perform(get("/v1/user/exists?username={email}", "homer.simpson@mimacom.com"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("false"));
     }
