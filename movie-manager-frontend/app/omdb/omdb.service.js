@@ -16,7 +16,7 @@
                     if (response.data.Error) {
                         return $q.reject({msg: response.data.Error});
                     } else {
-                        return response.data.Search;
+                        return response.data;
                     }
                 });
             }
