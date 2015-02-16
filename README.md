@@ -6,6 +6,7 @@ In this exercise we are going to add validation to a form and send the input (on
     - Bind the input fields to the attributes of the user object (it is already done for the first input).
     - You can find the possible validation directives in the angular docs: https://docs.angularjs.org/api/ng/input/input%5Btext%5D
     - Disable the submit button if the form is not valid
+    - Use ngMessage(s) to show validation messages per input field: https://code.angularjs.org/1.3.13/docs/api/ngMessages/directive/ngMessages
 3. Complete the controller to send the data to the backend (using the UserService)
     - Inject the UserService
     - Add a method which passes the data to the UserService.create method
