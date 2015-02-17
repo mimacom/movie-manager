@@ -7,36 +7,82 @@
         <div class="row">
             <div class="col-sm-12">
                 <alert messages="registerUserCtrl.errors"></alert>
+                <alert messages="registerUserCtrl.infos"></alert>
             </div>
-            <div class="col-sm-4">
-                <form role="form" novalidate>
-                    <div class="form-group">
-                        <label for="firstName">First name</label>
-                        <input type="text" required ng-model="registerUserCtrl.user.firstName" class="form-control" id="firstName"
-                               placeholder="First name">
+            <div class="col-sm-12">
+                <form role="form" name="registrationForm" novalidate ng-submit="registerUserCtrl.registerUser()">
+                    <!--firstName-->
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="firstName">First name</label>
+                            <input type="text" required ng-minlength="2" ng-model="registerUserCtrl.user.firstName"
+                                   name="firstName" ng-class="{'ng-dirty': registrationForm.$submitted}"
+                                   class="form-control" id="firstName" placeholder="First name">
+                            <div ng-messages="registrationForm.firstName.$error" ng-if="registrationForm.firstName.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="minlength">First name must have at least 2 characters.</span>
+                                <span class="error-message" ng-message="required">First name cannot be empty</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                    <!--lastName-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="lastName">Last name</label>
+                            <input type="text" required ng-minlength="2" class="form-control"
+                                   ng-model="registerUserCtrl.user.lastName" ng-class="{'ng-dirty': registrationForm.$submitted}"
+                                   name="lastName" id="lastName" placeholder="Last name">
+                            <div ng-messages="registrationForm.lastName.$error" ng-if="registrationForm.lastName.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="minlength">Last name must have at least 2 characters.</span>
+                                <span class="error-message" ng-message="required">Last name cannot be empty</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    <!--email-->
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="email">Email</label>
+                            <input type="email" required ng-model="registerUserCtrl.user.email" name="email"
+                                   ng-class="{'ng-dirty': registrationForm.$submitted}"
+                                   check-username class="form-control" id="email" placeholder="Email">
+                            <div ng-messages="registrationForm.email.$error" ng-if="registrationForm.email.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Email cannot be empty</span>
+                                <span class="error-message" ng-message="email">Invalid email address</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="birthDate">Birth date</label>
-                        <input type="text" class="form-control" id="birthDate" placeholder="Birth date">
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label for="birthDate">Birth date</label>
+                            <input type="text" class="form-control" required
+                                   ng-pattern="/^\d{1,2}\.\d{1,2}\.\d{4}$/"
+                                   ng-model="registerUserCtrl.user.birthDate" id="birthDate"
+                                   ng-class="{'ng-dirty': registrationForm.$submitted}"
+                                   placeholder="dd.mm.yyyy" name="birthDate">
+                            <div ng-messages="registrationForm.birthDate.$error" ng-if="registrationForm.birthDate.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Birth date cannot be empty</span>
+                                <span class="error-message" ng-message="pattern">Invalid date (expected format dd.mm.yyy)</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Gender</label>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4">
+                            <label>Gender</label>
 
-                        <div>
-                            <label class="checkbox-inline">
-                                <input type="radio" name="gender" id="genderM" value="option1"> M
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="radio" name="gender" id="genderF" value="option2"> F
-                            </label>
+                            <div>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="registerUserCtrl.user.gender" required name="gender"
+                                           id="genderM"
+                                           value="M"> M
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" ng-model="registerUserCtrl.user.gender" required name="gender"
+                                           id="genderF"
+                                           value="F"> F
+                                </label>
+                            </div>
+                            <div ng-messages="registrationForm.gender.$error" ng-if="registrationForm.gender.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Please choose gender</span>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
