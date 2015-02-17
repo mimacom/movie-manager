@@ -1,5 +1,5 @@
 (function () {
-    angular.module('user', ['login', 'util.date'])
+    angular.module('user', ['ngRoute', 'login', 'util.date'])
         .config(function ($routeProvider) {
             $routeProvider.when('/register', {
                 controller: 'RegisterUserController',
