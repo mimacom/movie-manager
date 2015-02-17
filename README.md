@@ -1,6 +1,6 @@
 Exercise 4 - Testing
 =============
-In this exercise we are going to the services, controllers and directives that were created before.
+In this exercise we are going to test the services, controllers and directives that were created before.
 
 1. Write a test case for the UserService.
 1. Write a test case for the RegisterUserController.
@@ -8,6 +8,7 @@ In this exercise we are going to the services, controllers and directives that w
 
 Hints
 ======
+- To start karma use _node node_modules/karma/bin/karma start karma.conf.js_
 - Some useful documentation
     - https://code.angularjs.org/1.3.13/docs/api/ngMockE2E/service/$httpBackend
     - https://code.angularjs.org/1.3.13/docs/api/ngMock/function/angular.mock.inject
