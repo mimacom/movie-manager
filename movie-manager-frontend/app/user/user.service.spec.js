@@ -1,5 +1,5 @@
 (function () {
-    describe('The behavior of the UserService', function () {
+    describe('The UserService', function () {
         var UserService, $httpBackend;
 
         beforeEach(function () {
@@ -28,6 +28,21 @@
             // Assert
             $httpBackend.flush();
             expect(userExists).toBe(true);
-        })
+        });
+
+        it('should return false when userExists is called with a non-existing user', function () {
+            // Arrange
+            $httpBackend.expectGET('/api/v1/user/exists?username=homer.simpson@mimacom.com').respond(200, 'false');
+            var userExists;
+
+            // Act
+            UserService.userExists('homer.simpson@mimacom.com').then(function (userExistsResponse) {
+                userExists = userExistsResponse;
+            });
+
+            // Assert
+            $httpBackend.flush();
+            expect(userExists).toBe(false);
+        });
     });
 }());
