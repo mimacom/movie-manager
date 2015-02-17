@@ -5,7 +5,8 @@
         'layout',
         'search',
         'movie.card',
-        'user'
+        'user',
+        'util.date'
     ])
         .config(function ($routeProvider) {
             $routeProvider.otherwise({
