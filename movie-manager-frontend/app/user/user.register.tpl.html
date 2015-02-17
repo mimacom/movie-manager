@@ -1,27 +1,27 @@
 <div class="panel panel-default">
+
+    <!-- TODO add form validation-->
+
     <div class="panel-heading">Registration</div>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-12">
                 <alert messages="registerUserCtrl.errors"></alert>
+                <alert messages="registerUserCtrl.infos"></alert>
             </div>
-
             <div class="col-sm-12">
-                <form name="registerUserCtrl.registrationForm" role="form">
+                <form role="form" name="registrationForm" novalidate ng-submit="registerUserCtrl.registerUser()">
                     <!--firstName-->
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="firstName">First name</label>
                             <input type="text" required ng-minlength="2" ng-model="registerUserCtrl.user.firstName"
-                                   name="firstName"
+                                   name="firstName" ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    class="form-control" id="firstName" placeholder="First name">
-                        </div>
-                        <div class="col-sm-4"
-                             ng-show="registerUserCtrl.registrationForm.firstName.$dirty && !registerUserCtrl.registrationForm.firstName.$valid">
-                            <label></label>
-
-                            <p class="form-control-static">First name must have at least 2 characters.</p>
-
+                            <div ng-messages="registrationForm.firstName.$error" ng-if="registrationForm.firstName.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="minlength">First name must have at least 2 characters.</span>
+                                <span class="error-message" ng-message="required">First name cannot be empty</span>
+                            </div>
                         </div>
                     </div>
                     <!--lastName-->
@@ -29,15 +29,12 @@
                         <div class="form-group has-feedback col-sm-4">
                             <label for="lastName">Last name</label>
                             <input type="text" required ng-minlength="2" class="form-control"
-                                   ng-model="registerUserCtrl.user.lastName"
+                                   ng-model="registerUserCtrl.user.lastName" ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    name="lastName" id="lastName" placeholder="Last name">
-                        </div>
-                        <div class="col-sm-4"
-                             ng-show="registerUserCtrl.registrationForm.lastName.$dirty && !registerUserCtrl.registrationForm.lastName.$valid">
-                            <label></label>
-
-                            <p class="form-control-static">Last name must have at least 2 characters.</p>
-
+                            <div ng-messages="registrationForm.lastName.$error" ng-if="registrationForm.lastName.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="minlength">Last name must have at least 2 characters.</span>
+                                <span class="error-message" ng-message="required">Last name cannot be empty</span>
+                            </div>
                         </div>
                     </div>
                     <!--email-->
@@ -45,36 +42,26 @@
                         <div class="form-group has-feedback col-sm-4">
                             <label for="email">Email</label>
                             <input type="email" required ng-model="registerUserCtrl.user.email" name="email"
+                                   ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    check-username class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="col-sm-4"
-                             ng-show="registerUserCtrl.registrationForm.email.$dirty && !registerUserCtrl.registrationForm.email.$valid">
-                            <label></label>
-
-                            <p ng-show="!registerUserCtrl.registrationForm.email.$error.username"
-                               class="form-control-static">Invalid email</p>
-
-                            <p ng-show="registerUserCtrl.registrationForm.email.$error.username"
-                               class="form-control-static">Username is already taken</p>
+                            <div ng-messages="registrationForm.email.$error" ng-if="registrationForm.email.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Email cannot be empty</span>
+                                <span class="error-message" ng-message="email">Invalid email address</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group has-feedback col-sm-4">
                             <label for="birthDate">Birth date</label>
-                            <input type="text" class="form-control" required validate-date
+                            <input type="text" class="form-control" required
+                                   ng-pattern="/^\d{1,2}\.\d{1,2}\.\d{4}$/"
                                    ng-model="registerUserCtrl.user.birthDate" id="birthDate"
+                                   ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    placeholder="dd.mm.yyyy" name="birthDate">
-                        </div>
-
-                        <div class="col-sm-4"
-                             ng-show="registerUserCtrl.registrationForm.birthDate.$dirty && !registerUserCtrl.registrationForm.birthDate.$valid">
-                            <label></label>
-
-                            <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.format"
-                               class="form-control-static">Invalid date (expected format dd.mm.yyy)</p>
-
-                            <p ng-show="registerUserCtrl.registrationForm.birthDate.$error.range"
-                               class="form-control-static">Birth date must be between now and 120 years ago</p>
+                            <div ng-messages="registrationForm.birthDate.$error" ng-if="registrationForm.birthDate.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Birth date cannot be empty</span>
+                                <span class="error-message" ng-message="pattern">Invalid date (expected format dd.mm.yyy)</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -93,17 +80,12 @@
                                            value="F"> F
                                 </label>
                             </div>
-                        </div>
-                        <div class="col-sm-4"
-                             ng-show="registerUserCtrl.registrationForm.gender.$dirty && !registerUserCtrl.registrationForm.gender.$valid">
-                            <label></label>
-
-                            <p class="form-control-static">Please chosse gender</p>
+                            <div ng-messages="registrationForm.gender.$error" ng-if="registrationForm.gender.$touched || registrationForm.$submitted">
+                                <span class="error-message" ng-message="required">Please choose gender</span>
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" ng-disabled="!registerUserCtrl.registrationForm.$valid"
-                            ng-click="registerUserCtrl.registerUser()" class="btn btn-primary">Submit
-                    </button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

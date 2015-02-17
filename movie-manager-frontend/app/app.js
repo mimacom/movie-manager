@@ -1,6 +1,7 @@
 (function () {
     angular.module('moviemanager', [
         'ngRoute',
+        'ngMessages',
         'layout',
         'search',
         'movie.card',

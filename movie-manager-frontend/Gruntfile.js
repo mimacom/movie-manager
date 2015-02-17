@@ -25,7 +25,8 @@ module.exports = function (grunt) {
 
     var vendorMinifiedJsFiles = [
         'vendor/angular/angular.min.js',
-        'vendor/angular-route/angular-route.min.js'
+        'vendor/angular-route/angular-route.min.js',
+        'vendor/angular-messages/angular-messages.min.js'
     ];
 
     var vendorFonts = [
