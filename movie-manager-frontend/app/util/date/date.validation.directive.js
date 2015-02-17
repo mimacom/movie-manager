@@ -20,7 +20,7 @@
                             var dateParts = value.split('.');
                             var date = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
                             // date must be between now and 120 years ago
-                            rangeValid = date.getTime() < Date.now() || date.getTime() > (Date.now() - 1000 * 60 * 60 * 24 * 365 * 120 );
+                            rangeValid = date.getTime() < Date.now() && date.getTime() > (Date.now() - 1000 * 60 * 60 * 24 * 365 * 120 );
                         }
                         ctrl.$setValidity('format', formatValid);
                         ctrl.$setValidity('range', rangeValid);

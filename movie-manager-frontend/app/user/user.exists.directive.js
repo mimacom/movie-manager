@@ -1,16 +1,22 @@
 (function () {
     angular.module('user')
-        .directive('checkUsername', function (UserService) {
+        .directive('userExists', function ($q, UserService) {
             return {
                 require: 'ngModel',
-                link: function (scope, elem, attr, ctrl) {
+                link: function (scope, elem, attr, ngModelCtrl) {
+                    ngModelCtrl.$asyncValidators.userExists = function (modelValue, viewValue) {
+                        var deferred = $q.defer();
 
-                    elem.on('keyup', function (event) {
-                        var userexists = UserService.userExists(event.target.value).then(function (exists) {
-                            ctrl.$setValidity('username', !exists);
+                        UserService.userExists(viewValue).then(function (userExists) {
+                            if (userExists) {
+                                deferred.reject();
+                            } else {
+                                deferred.resolve();
+                            }
                         });
-                    });
 
+                        return deferred.promise;
+                    };
                 }
             };
         });

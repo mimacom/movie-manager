@@ -18,7 +18,7 @@
                             <input type="text" required ng-minlength="2" ng-model="registerUserCtrl.user.firstName"
                                    name="firstName" ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    class="form-control" id="firstName" placeholder="First name">
-                            <div ng-messages="registrationForm.firstName.$error" ng-if="registrationForm.firstName.$touched || registrationForm.$submitted">
+                            <div ng-messages="registrationForm.firstName.$error" ng-if="registrationForm.firstName.$dirty || registrationForm.firstName.$touched || registrationForm.$submitted">
                                 <span class="error-message" ng-message="minlength">First name must have at least 2 characters.</span>
                                 <span class="error-message" ng-message="required">First name cannot be empty</span>
                             </div>
@@ -31,7 +31,7 @@
                             <input type="text" required ng-minlength="2" class="form-control"
                                    ng-model="registerUserCtrl.user.lastName" ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    name="lastName" id="lastName" placeholder="Last name">
-                            <div ng-messages="registrationForm.lastName.$error" ng-if="registrationForm.lastName.$touched || registrationForm.$submitted">
+                            <div ng-messages="registrationForm.lastName.$error" ng-if="registrationForm.lastName.$dirty || registrationForm.lastName.$touched || registrationForm.$submitted">
                                 <span class="error-message" ng-message="minlength">Last name must have at least 2 characters.</span>
                                 <span class="error-message" ng-message="required">Last name cannot be empty</span>
                             </div>
@@ -43,9 +43,11 @@
                             <label for="email">Email</label>
                             <input type="email" required ng-model="registerUserCtrl.user.email" name="email"
                                    ng-class="{'ng-dirty': registrationForm.$submitted}"
-                                   check-username class="form-control" id="email" placeholder="Email">
-                            <div ng-messages="registrationForm.email.$error" ng-if="registrationForm.email.$touched || registrationForm.$submitted">
+                                   user-exists class="form-control" id="email" placeholder="Email">
+                            <pre>{{ registrationForm.email.$error | json }}</pre>
+                            <div ng-messages="registrationForm.email.$error" ng-if="registrationForm.email.$dirty || registrationForm.email.$touched || registrationForm.$submitted">
                                 <span class="error-message" ng-message="required">Email cannot be empty</span>
+                                <span class="error-message" ng-message="userExists">A user with this email already exists</span>
                                 <span class="error-message" ng-message="email">Invalid email address</span>
                             </div>
                         </div>
@@ -54,13 +56,14 @@
                         <div class="form-group has-feedback col-sm-4">
                             <label for="birthDate">Birth date</label>
                             <input type="text" class="form-control" required
-                                   ng-pattern="/^\d{1,2}\.\d{1,2}\.\d{4}$/"
+                                   validate-date
                                    ng-model="registerUserCtrl.user.birthDate" id="birthDate"
                                    ng-class="{'ng-dirty': registrationForm.$submitted}"
                                    placeholder="dd.mm.yyyy" name="birthDate">
-                            <div ng-messages="registrationForm.birthDate.$error" ng-if="registrationForm.birthDate.$touched || registrationForm.$submitted">
+                            <div ng-messages="registrationForm.birthDate.$error" ng-if="registrationForm.birthDate.$dirty || registrationForm.birthDate.$touched || registrationForm.$submitted">
                                 <span class="error-message" ng-message="required">Birth date cannot be empty</span>
-                                <span class="error-message" ng-message="pattern">Invalid date (expected format dd.mm.yyy)</span>
+                                <span class="error-message" ng-message="format">Invalid date (expected format dd.mm.yyyy)</span>
+                                <span class="error-message" ng-message="range">Date must be between 0 and 120 years in the past</span>
                             </div>
                         </div>
                     </div>
@@ -80,12 +83,12 @@
                                            value="F"> F
                                 </label>
                             </div>
-                            <div ng-messages="registrationForm.gender.$error" ng-if="registrationForm.gender.$touched || registrationForm.$submitted">
+                            <div ng-messages="registrationForm.gender.$error" ng-if="registrationForm.gender.$dirty || registrationForm.gender.$touched || registrationForm.$submitted">
                                 <span class="error-message" ng-message="required">Please choose gender</span>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="registrationForm.$pending">Submit</button>
                 </form>
             </div>
         </div>
