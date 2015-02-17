@@ -4,6 +4,7 @@ module.exports = function(config) {
             'vendor/angular/angular.min.js',
             'vendor/angular-route/angular-route.min.js',
             'vendor/angular-messages/angular-messages.min.js',
+            'vendor/angular-mocks/angular-mocks.js',
             'app/**/*.module.js',
             'app/**/*.js',
             'app/**/*.tpl.html'
